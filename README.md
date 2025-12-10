@@ -1,16 +1,43 @@
-# React + Vite
+# Simple News Portal 📰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic news application built with **React (Vite)** and **JSON-Server**. This project demonstrates full CRUD capabilities, a comment system, and simulated user authentication.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Simulated Authentication:** Login as different users to manage content.
+* **Create News:** Authors can publish new articles.
+* **Read News:** View a feed of all news items and detailed views for specific posts.
+* **Update & Delete:** Authors can edit or delete their own posts (permissions handling).
+* **Comments:** Users can add comments to any news post.
+* **Validation:** Prevents empty titles and ensures content meets length requirements.
+* **Responsive Design:** Modern UI with hover effects and mobile-friendly layout.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend:** React.js (Vite)
+* **Routing:** React Router DOM
+* **HTTP Client:** Axios
+* **Mock Backend:** JSON-Server
+* **Styling:** CSS3 (Custom Grid & Flexbox)
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/news-portal.git](https://github.com/YOUR_USERNAME/news-portal.git)
+    cd news-portal
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+## 🖥️ How to Run
+
+This application requires **two separate terminals** running simultaneously (one for the database, one for the frontend).
+
+### Terminal 1: Start the Backend
+Runs the mock JSON database on port 3000.
+```bash
+npx json-server --watch db.json --port 3000
