@@ -41,3 +41,9 @@ This application requires **two separate terminals** running simultaneously (one
 Runs the mock JSON database on port 3000.
 ```bash
 npx json-server --watch db.json --port 3000
+```
+### Terminal 2: Start the Frontend
+Runs the FrontEnd
+```bash
+npm run dev
+```
