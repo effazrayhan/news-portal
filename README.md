@@ -24,7 +24,7 @@ A dynamic news application built with **React (Vite)** and **JSON-Server**. This
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/news-portal.git](https://github.com/YOUR_USERNAME/news-portal.git)
+    git clone [https://github.com/effazrayhan/news-portal.git](https://github.com/effazrayhan/news-portal.git)
     cd news-portal
     ```
 
