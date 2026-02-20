@@ -1,49 +1,105 @@
-# Simple News Portal 📰
+# 📰 News Portal - Full-Stack Application
 
-A dynamic news application built with **React (Vite)** and **JSON-Server**. This project demonstrates full CRUD capabilities, a comment system, and simulated user authentication.
+A production-ready news portal with Node.js/Express backend and React frontend. Features JWT authentication, role-based access control, article management, and comment moderation.
 
-## 🚀 Features
+## ✨ Features
 
-* **Simulated Authentication:** Login as different users to manage content.
-* **Create News:** Authors can publish new articles.
-* **Read News:** View a feed of all news items and detailed views for specific posts.
-* **Update & Delete:** Authors can edit or delete their own posts (permissions handling).
-* **Comments:** Users can add comments to any news post.
-* **Validation:** Prevents empty titles and ensures content meets length requirements.
-* **Responsive Design:** Modern UI with hover effects and mobile-friendly layout.
+### 🔐 Security
+- JWT token-based authentication
+- Password hashing with bcryptjs
+- Role-based access control (Admin, Editor, User)
+- Secure environment variable configuration
+- CORS protection
+- Security headers with Helmet
 
-## 🛠️ Tech Stack
+### 📰 Article Management
+- Create, read, update, delete articles
+- Article categorization
+- Search and filtering by category
+- Draft and published states
+- Image URL support
+- View count tracking
 
-* **Frontend:** React.js (Vite)
-* **Routing:** React Router DOM
-* **HTTP Client:** Axios
-* **Mock Backend:** JSON-Server
-* **Styling:** CSS3 (Custom Grid & Flexbox)
+### 👥 User Management
+- User registration and login
+- Profile management
+- Three user roles with different permissions
+- Active/inactive user status
 
-## 📦 Installation
+### 💬 Comments
+- Comment creation and moderation
+- Approval workflow
+- Comment deletion
+- Threaded under articles
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/effazrayhan/news-portal.git](https://github.com/effazrayhan/news-portal.git)
-    cd news-portal
-    ```
+## 🏗️ Tech Stack
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+### Backend
+- **Framework**: Express.js 4.18
+- **Database**: PostgreSQL 12+
+- **ORM**: Sequelize 6.35
+- **Authentication**: JWT + bcryptjs
+- **Validation**: Joi
+- **Security**: Helmet, CORS
 
-## 🖥️ How to Run
+### Frontend
+- **Framework**: React 18+
+- **Bundler**: Vite
+- **HTTP Client**: Axios
+- **Styling**: CSS
 
-This application requires **two separate terminals** running simultaneously (one for the database, one for the frontend).
+## 🚀 Quick Start
 
-### Terminal 1: Start the Backend
-Runs the mock JSON database on port 3000.
+### Prerequisites
+- Node.js 16+
+- PostgreSQL 12+
+- npm or yarn
+
+### Backend Setup (5 minutes)
+
 ```bash
-npx json-server --watch db.json --port 3000
-```
-### Terminal 2: Start the Frontend
-Runs the FrontEnd
-```bash
+cd backend
+npm install
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your PostgreSQL credentials
+
+# Create database
+createdb news_portal
+
+# Run migrations
+npm run db:migrate
+
+# Seed initial data
+npm run db:seed:all
+
+# Start development server
 npm run dev
 ```
+
+### Frontend Setup
+
+```bash
+cd ../
+npm install
+npm run dev
+```
+
+## 🔑 Default Credentials
+
+**Admin Account**
+- Email: `admin@newportal.com`
+- Password: `Admin@123456`
+
+**Editor Account**
+- Email: `editor1@newportal.com`
+- Password: `Admin@123456`
+
+## 📚 Documentation
+
+- **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
+- **[API_REFERENCE.md](API_REFERENCE.md)** - Complete API endpoints
+- **[backend/ARCHITECTURE.md](backend/ARCHITECTURE.md)** - Detailed architecture
+- **[ARCHITECTURE_DIAGRAMS.md](ARCHITECTURE_DIAGRAMS.md)** - System diagrams
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - What was built
