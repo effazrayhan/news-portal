@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { User } from '../models/index.js';
 import { hashPassword, comparePassword } from '../utils/password.js';
 import { generateToken } from '../utils/jwt.js';
@@ -53,18 +54,23 @@ class AuthService {
   }
 
   /**
-   * Login user
+   * Login user (accepts email or username as identifier)
    */
-  async login(email, password) {
-    // Find user
+  async login(identifier, password) {
+    // Find user by email or username
     const user = await User.findOne({
-      where: { email }
+      where: {
+        [Op.or]: [
+          { email: identifier },
+          { username: identifier }
+        ]
+      }
     });
 
     if (!user) {
       throw {
         statusCode: 401,
-        message: 'Invalid email or password'
+        message: 'Invalid credentials'
       };
     }
 
@@ -74,7 +80,7 @@ class AuthService {
     if (!isPasswordValid) {
       throw {
         statusCode: 401,
-        message: 'Invalid email or password'
+        message: 'Invalid credentials'
       };
     }
 

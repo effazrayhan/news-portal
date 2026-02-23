@@ -10,14 +10,28 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3699;
 
 // Security middleware
 app.use(helmet());
 
 // CORS middleware
+const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
+  .split(',')
+  .map((o) => o.trim());
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin(origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    if (
+      allowedOrigins.includes(origin) ||
+      process.env.NODE_ENV === 'development'
+    ) {
+      return callback(null, true);
+    }
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 
@@ -54,10 +68,19 @@ const startServer = async () => {
     console.log('✓ Database models synchronized');
 
     // Start server
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`\n🚀 Server running on http://localhost:${PORT}`);
       console.log(`📚 API Documentation: http://localhost:${PORT}/api/v1`);
       console.log(`🏥 Health check: http://localhost:${PORT}/health\n`);
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${PORT} is already in use. Stop the existing process and try again.`);
+      } else {
+        console.error('❌ Server error:', err.message);
+      }
+      process.exit(1);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error.message);

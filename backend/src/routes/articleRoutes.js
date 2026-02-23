@@ -14,6 +14,13 @@ const router = express.Router();
 router.get('/', ArticleController.getAllArticles);
 
 /**
+ * @route   GET /api/v1/articles/author/:authorId
+ * @desc    Get articles by specific author
+ * @access  Public
+ */
+router.get('/author/:authorId', ArticleController.getArticlesByAuthor);
+
+/**
  * @route   GET /api/v1/articles/:id
  * @desc    Get article by ID
  * @access  Public
@@ -28,7 +35,7 @@ router.get('/:id', ArticleController.getArticleById);
 router.post(
   '/',
   authenticate,
-  authorize(['editor', 'admin']),
+  authorize(['user', 'editor', 'admin']),
   validateRequest(createArticleSchema),
   ArticleController.createArticle
 );
@@ -51,12 +58,5 @@ router.put(
  * @access  Private (Article Author/Admin)
  */
 router.delete('/:id', authenticate, ArticleController.deleteArticle);
-
-/**
- * @route   GET /api/v1/articles/author/:authorId
- * @desc    Get articles by specific author
- * @access  Public
- */
-router.get('/author/:authorId', ArticleController.getArticlesByAuthor);
 
 export default router;

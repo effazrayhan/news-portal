@@ -23,14 +23,13 @@ export const createArticleSchema = Joi.object({
   
   excerpt: Joi.string()
     .max(500)
+    .allow('')
     .optional(),
   
-  imageUrl: Joi.string()
-    .uri()
-    .optional()
-    .messages({
-      'string.uri': 'Image URL must be a valid URL'
-    }),
+  imageUrl: Joi.alternatives().try(
+    Joi.string().uri(),
+    Joi.string().empty('')
+  ).optional(),
   
   categoryId: Joi.string()
     .uuid()
@@ -57,11 +56,13 @@ export const updateArticleSchema = Joi.object({
   
   excerpt: Joi.string()
     .max(500)
+    .allow('')
     .optional(),
   
-  imageUrl: Joi.string()
-    .uri()
-    .optional(),
+  imageUrl: Joi.alternatives().try(
+    Joi.string().uri(),
+    Joi.string().empty('')
+  ).optional(),
   
   categoryId: Joi.string()
     .uuid()

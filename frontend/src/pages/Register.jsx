@@ -86,7 +86,7 @@ export default function Register() {
               name="username"
               value={form.username}
               onChange={handleChange}
-              placeholder="accountinggirl"
+              placeholder="johnnysins"
               required
               minLength={3}
               maxLength={100}
@@ -114,7 +114,7 @@ export default function Register() {
               name="password"
               value={form.password}
               onChange={handleChange}
-              placeholder="sexsex"
+              placeholder="8 chars minm"
               required
               minLength={8}
             />

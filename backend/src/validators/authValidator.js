@@ -30,17 +30,23 @@ export const registerSchema = Joi.object({
   
   firstName: Joi.string()
     .max(100)
+    .allow('')
     .optional(),
   
   lastName: Joi.string()
     .max(100)
+    .allow('')
     .optional()
 }).unknown(false);
 
 export const loginSchema = Joi.object({
-  email: Joi.string()
-    .email()
-    .required(),
+  identifier: Joi.string()
+    .min(3)
+    .required()
+    .messages({
+      'string.min': 'Username or email must be at least 3 characters',
+      'any.required': 'Username or email is required'
+    }),
   
   password: Joi.string()
     .required()
@@ -55,9 +61,11 @@ export const updateProfileSchema = Joi.object({
   
   firstName: Joi.string()
     .max(100)
+    .allow('')
     .optional(),
   
   lastName: Joi.string()
     .max(100)
+    .allow('')
     .optional()
 }).unknown(false);
